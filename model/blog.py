@@ -30,7 +30,7 @@ class Blog(object):
         post.save_to_mongo()
 
     def get_post(self):
-        return  Post.from_blog(self.id)
+        return Post.from_blog(self.id)
 
     def save_to_mongo(self):
         Database.insert(collection="posts",
@@ -46,7 +46,7 @@ class Blog(object):
 
     @classmethod
     def from_mongo(cls, id):
-        blog_data = Database.find_one(collection="blog", query={"id":id})
+        blog_data = Database.find_one(collection="posts", query={"id":id})
         return cls(author=blog_data["author"],
                    title=blog_data["title"],
                    description=blog_data["description"],
